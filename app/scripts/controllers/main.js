@@ -1,7 +1,28 @@
 'use strict';
 
 angular.module('instasearcherApp')
-  .controller('MainCtrl', function ($scope, $http) {
+
+	.directive('notification', function($timeout){
+	  return {
+	    link: function(scope, element, attrs) {
+	      $timeout(function(){
+	        element.hide();
+	      }, 30000);
+	    }
+	  }
+	})
+
+	.directive('show', function($timeout){
+	  return {
+	    link: function(scope, element, attrs) {
+	      $timeout(function(){
+	        element.show();
+	      }, 30000);
+	    }
+	  }
+	})
+
+  .controller('MainCtrl', function ($scope, $http, $timeout) {
 
     $scope.searchSubmit = function(keyword) {
       
@@ -20,10 +41,17 @@ angular.module('instasearcherApp')
       }).
       success(function(data) {
         $scope.results = data.data;
+        $scope.search = keyword;
+        $scope.keyword = '';
+        $scope.responder = true;
+      	$scope.counts = data.data.length;
       }).
       error(function() {
         alert('error');
       });
+
+
+
     };
 
   });
