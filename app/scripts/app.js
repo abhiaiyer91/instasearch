@@ -2,7 +2,7 @@
 
 angular
   .module('instasearcherApp', [
-    'ngRoute'
+    'ngRoute', 'ngAnimate'
   ])
   .config(function ($routeProvider) {
     $routeProvider
