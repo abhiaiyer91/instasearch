@@ -2,25 +2,16 @@
 
 angular.module('instasearcherApp')
 
-	.directive('notification', function($timeout){
+	.directive('hide', function($timeout){
 	  return {
 	    link: function(scope, element, attrs) {
 	      $timeout(function(){
 	        element.hide();
-	      }, 30000);
+	      }, 3000);
 	    }
 	  }
 	})
 
-	.directive('show', function($timeout){
-	  return {
-	    link: function(scope, element, attrs) {
-	      $timeout(function(){
-	        element.show();
-	      }, 30000);
-	    }
-	  }
-	})
 
   .controller('MainCtrl', function ($scope, $http, $timeout) {
 
@@ -45,9 +36,10 @@ angular.module('instasearcherApp')
         $scope.keyword = '';
         $scope.responder = true;
       	$scope.counts = data.data.length;
+        $scope.failure = false;
       }).
       error(function() {
-        alert('error');
+        $scope.failure = true;
       });
 
 
