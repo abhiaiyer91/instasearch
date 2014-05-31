@@ -1,6 +1,8 @@
+
+(function(window){
 'use strict';
 
-angular
+window.Abhi = angular
   .module('instasearcherApp', [
     'ngRoute', 'ngAnimate'
   ])
@@ -14,3 +16,6 @@ angular
         redirectTo: '/'
       });
   });
+
+}(window));
+
