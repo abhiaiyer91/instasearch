@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('instasearcherApp')
+window.Abhi
 
-	.directive('hide', function($timeout){
+	.directive('hide', ['$timeout', function($timeout){
 	  return {
 	    link: function(scope, element, attrs) {
 	      $timeout(function(){
@@ -10,13 +10,12 @@ angular.module('instasearcherApp')
 	      }, 3000);
 	    }
 	  }
-	})
+	}]);
 
-
-  .controller('MainCtrl', function ($scope, $http, $timeout) {
+window.Abhi
+  .controller('MainCtrl',['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
 
     $scope.searchSubmit = function(keyword) {
-      
       $scope.keyword = keyword;
 
       var endpoint = "https://api.instagram.com/v1/tags/"+keyword+"/media/recent";
@@ -41,9 +40,6 @@ angular.module('instasearcherApp')
       error(function() {
         $scope.failure = true;
       });
-
-
-
     };
 
-  });
+  }]);
